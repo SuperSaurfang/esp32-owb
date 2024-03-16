@@ -517,7 +517,7 @@ static struct owb_driver rmt_driver_functions = {
 
 // configure and allocate resources
 //
-OneWireBus* owb_rmt_initialize (owb_rmt_driver_info *info, gpio_num_t gpio_num, int tx_channel, int rx_channel)
+OneWireBus* owb_rmt_initialize (owb_rmt_driver_info *info, gpio_num_t gpio_num, rmt_channel_id_t tx_channel, rmt_channel_id_t rx_channel)
 {
     //* The function now ignores tx_channel and rx_channel as the new RMT driver allocates channels on demand.
     //* The parameters are kept in the call to preserve compatibility with previous versions.

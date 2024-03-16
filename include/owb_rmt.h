@@ -64,19 +64,6 @@ OneWireBus bus;                               ///< OneWireBus instance (see owb.
 } owb_rmt_driver_info;
 
 /**
- * @brief Initialise the RMT driver.
- * @param[in] info Pointer to an uninitialized owb_rmt_driver_info structure.
- *                 Note: the structure must remain in scope for the lifetime of this component.
- * @param[in] gpio_num The GPIO number to use as the One Wire bus data line.
- * @param tx_channel NOW IGNORED: the new RMT driver allocates channels dynamically.
- * @param rx_channel NOW IGNORED: the new RMT driver allocates channels dynamically.
- * @return OneWireBus *, pass this into the other OneWireBus public API functions
- */
-OneWireBus* owb_rmt_initialize(owb_rmt_driver_info * info, gpio_num_t gpio_num,
-                               rmt_channel_t tx_channel, rmt_channel_t rx_channel);
-
-
-/**
  * @brief Legacy RMT channel IDs.
  * 
  * These are no longer used for anything. They are defined here purely so
@@ -94,8 +81,19 @@ typedef enum {
     RMT_CHANNEL_7,  /*!< RMT channel number 7 */
 #endif
     RMT_CHANNEL_MAX /*!< Number of RMT channels */
-} rmt_channel_t;
+} rmt_channel_id_t;
 
+/**
+ * @brief Initialise the RMT driver.
+ * @param[in] info Pointer to an uninitialized owb_rmt_driver_info structure.
+ *                 Note: the structure must remain in scope for the lifetime of this component.
+ * @param[in] gpio_num The GPIO number to use as the One Wire bus data line.
+ * @param tx_channel NOW IGNORED: the new RMT driver allocates channels dynamically.
+ * @param rx_channel NOW IGNORED: the new RMT driver allocates channels dynamically.
+ * @return OneWireBus *, pass this into the other OneWireBus public API functions
+ */
+OneWireBus* owb_rmt_initialize(owb_rmt_driver_info * info, gpio_num_t gpio_num,
+                               rmt_channel_id_t tx_channel, rmt_channel_id_t rx_channel);
 
 #ifdef __cplusplus
 }
